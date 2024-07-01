@@ -2,27 +2,38 @@ import * as React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
-import Calculator from "./pages/Calculator/Calculator";
 import TabelaHorarios from "./pages/Cronograma/Horario";
 import HomeScreenII from "./pages/CampusII/HomeScreenII";
 import SemestersScreen from "./pages/Semester/SemesterScreen";
 import DisciplinesScreen from "./pages/Disciplines/DisciplineScreen";
 import CampusScreen from "./pages/Campi/CampusScreen";
 import HomeScreenI from "./pages/CampusI/HomeScreenI";
-import UserProfileScreen from "./pages/Profile/Profile";
-import AcademicCalendar from "./pages/Calendar/Calendar";
+import UserProfileScreen from "./pages/Profile/ProfileScreen";
+import AcademicCalendar from "./pages/Calendar/CalendarScreen";
+import HomePage from "./pages/Home/HomePageScreen";
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Profile">
+      <Stack.Navigator initialRouteName="Home">
+        <Stack.Screen
+          name="HomePage"
+          component={HomePage}
+          options={{
+            headerTitle: "Insight",
+            headerStyle: {
+              backgroundColor: "#1f2c34",
+            },
+            headerTintColor: "#dbe3e5",
+          }}
+        />
         <Stack.Screen
           name="Profile"
           component={UserProfileScreen}
           options={{
-            headerTitle: "Insight",
+            headerTitle: "Meu Perfil",
             headerStyle: {
               backgroundColor: "#1f2c34",
             },
@@ -33,7 +44,7 @@ export default function App() {
           name="Campi"
           component={CampusScreen}
           options={{
-            headerTitle: "Campi",
+            headerTitle:"Campi",
             headerStyle: {
               backgroundColor: "#1f2c34",
             },
@@ -131,26 +142,7 @@ export default function App() {
             };
           }}
         />
-        <Stack.Screen
-          name="Calculadora"
-          component={Calculator}
-          options={({ navigation }) => ({
-            headerTitle: "Minha Calculadora",
-            headerStyle: {
-              backgroundColor: "#1f2c34",
-            },
-            headerTintColor: "#dbe3e5",
-            headerLeft: () => (
-              <Ionicons
-                name="arrow-back"
-                size={30}
-                color="#000"
-                style={{ marginLeft: 10 }}
-                onPress={() => navigation.goBack()}
-              />
-            ),
-          })}
-        />
+        
         <Stack.Screen
           name="Calendar"
           component={AcademicCalendar}
